@@ -34,6 +34,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         Back();
         ResetPassword();
         Register();
+        intent = getIntent();
+        user = (User)intent.getSerializableExtra("user");
     }
     public void ResetPassword(){
         resetpassword.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +82,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ForgotPasswordActivity.this,RegisterActivity.class));
+                intent = new Intent(ForgotPasswordActivity.this, RegisterActivity.class);
+                user=null;
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
@@ -88,7 +93,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ForgotPasswordActivity.this,LoginActivity.class));
+                intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
+                user=null;
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
