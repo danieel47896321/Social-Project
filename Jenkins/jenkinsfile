@@ -1,13 +1,8 @@
-pipeline{
-    agent none
-    stages{
-      stage('Build'){
-      
-      
-      }
-      stage('Test'){
-      
-      
-      }
+class SomeClassTest {
+    private val someClass = SomeClass()
+
+    @Test
+    fun doSomethingShouldSucceed() {
+        assertEquals(someClass.doSomething(), 2)
     }
 }
