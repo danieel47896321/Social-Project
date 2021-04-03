@@ -15,15 +15,26 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout gotologin;
+    private User user = null;
+    private Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        init();
+    }
+    public void init() {
         gotologin = findViewById(R.id.gotoLogin);
+        Login();
+    }
+    public void Login() {
         gotologin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
