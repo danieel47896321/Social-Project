@@ -1,17 +1,19 @@
-stages {
-  stage('Build') {
-    steps {
-      sh 'echo "This is my first step"'
+pipeline {
+  agent any
+  stages {
+  stage('Stage 1') {
+      steps {
+        script {
+          echo 'Stage 1'
+        }
+      }
     }
-  }
-  stage('Test') {
-    steps
-      sh 'echo "This is my Test step"'
-    }
-  }
-  stage('Deploy') {
-    steps {
-      sh 'echo "This is my Deploy step"'
+  stage('Stage 2') {
+      steps {
+        script {
+          echo 'Stage 2'
+        }
+      }
     }
   }
 }
