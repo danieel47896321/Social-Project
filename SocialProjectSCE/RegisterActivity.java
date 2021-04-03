@@ -19,6 +19,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button register;
     private CheckBox student,teacher;
     private DataBase db;
+    private User user;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
         TeacherPick();
         AlreadyHaveAccount();
         RegisterClick();
+        intent = getIntent();
+        user = (User)intent.getSerializableExtra("user");
     }
 
     public void StudentPick(){
@@ -67,7 +71,10 @@ public class RegisterActivity extends AppCompatActivity {
         alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                user=null;
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
