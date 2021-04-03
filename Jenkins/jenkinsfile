@@ -1,22 +1,19 @@
 pipeline {
-  agent any
-  stages {
-  docker {
-    image 'maven:3-alpine'
-  }
-  stage('Stage 1') {
-      steps {
-        script {
-          echo 'Stage 1'
+    agent none
+    stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                }
+            }
         }
-      }
+        stage('Tests') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                }
+            }
+         }
     }
-  stage('Stage 2') {
-      steps {
-        script {
-          echo 'Stage 2'
-        }
-      }
-    }
-  }
 }
