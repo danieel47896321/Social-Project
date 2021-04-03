@@ -1,8 +1,13 @@
-class SomeClassTest {
-    private val someClass = SomeClass()
-
-    @Test
-    fun doSomethingShouldSucceed() {
-        assertEquals(someClass.doSomething(), 2)
+pipeline{
+    agent none
+    stages{
+      stage('Run Application'){
+      
+      
+      }
+      stage('Test'){
+      
+      
+      }
     }
 }
