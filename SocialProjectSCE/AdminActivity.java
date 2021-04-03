@@ -33,7 +33,7 @@ public class AdminActivity extends AppCompatActivity {
         user = (User)intent.getSerializableExtra("user");
         text.setText( "שלום אדמין: "+user.getUsername());
     }
-    public void Logout(){
+    public void Changepassword(){
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,11 +43,14 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
     }
-    public void Changepassword(){
+    public void Logout(){
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this, LoginActivity.class));
+                intent = new Intent(AdminActivity.this, LoginActivity.class);
+                user=null;
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
