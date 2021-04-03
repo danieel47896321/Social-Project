@@ -38,7 +38,10 @@ public class TeacherActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, LoginActivity.class));
+                intent = new Intent(TeacherActivity.this, LoginActivity.class);
+                user=null;
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
