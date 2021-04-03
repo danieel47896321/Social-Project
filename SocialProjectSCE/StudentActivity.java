@@ -35,7 +35,10 @@ public class StudentActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, LoginActivity.class));
+                intent = new Intent(StudentActivity.this, LoginActivity.class);
+                user=null;
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
