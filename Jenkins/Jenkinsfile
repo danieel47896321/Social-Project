@@ -9,6 +9,9 @@ pipeline {
             }
         }
         stage('Tests') {
+            steps {
+                echo 'Building..'
+            }
             agent {
                 docker {
                     image 'maven:3-alpine'
