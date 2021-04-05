@@ -50,8 +50,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                 String EMAIL = cursor.getString(cursor.getColumnIndex("email"));
                                 String PASSWORD = cursor.getString(cursor.getColumnIndex("password"));
                                 String TYPE = cursor.getString(cursor.getColumnIndex("type"));
+                                String AGE = cursor.getString(cursor.getColumnIndex("age"));
+                                String CITY = cursor.getString(cursor.getColumnIndex("city"));
+                                String SEX = cursor.getString(cursor.getColumnIndex("sex"));
+                                String DEPART = cursor.getString(cursor.getColumnIndex("depart"));
+                                String FIRSTNAME = cursor.getString(cursor.getColumnIndex("firstname"));
+                                String LASTNAME = cursor.getString(cursor.getColumnIndex("lastname"));
                                 if (email.getText().toString().equals(EMAIL) && username.getText().toString().equals(USERNAME)) {
-                                    user = new User(USERNAME,EMAIL,PASSWORD,TYPE);
+                                    user = new User(USERNAME,EMAIL,PASSWORD,TYPE,AGE,CITY,SEX,DEPART,FIRSTNAME,LASTNAME);
                                     cursor.close();
                                     db.close();
                                     intent = new Intent(ForgotPasswordActivity.this, SetNewPasswordActivity.class);
