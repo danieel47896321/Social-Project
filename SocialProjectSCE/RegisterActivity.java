@@ -14,10 +14,11 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
     private static String type = "Student";
-    private EditText username,email,password,confirmpassword;
+    private static String sex = "Male";
+    private EditText username,email,password,confirmpassword,firstname,lastname,city,depart,age;
     private TextView alreadyHaveAccount;
     private Button register;
-    private CheckBox student,teacher;
+    private CheckBox student,teacher,male,female;
     private DataBase db;
     private User user;
     private Intent intent;
@@ -38,15 +39,43 @@ public class RegisterActivity extends AppCompatActivity {
         register = findViewById(R.id.buttonRegister);
         student = findViewById(R.id.Student);
         teacher = findViewById(R.id.Teacher);
+        firstname = findViewById(R.id.RegFirstname);
+        lastname = findViewById(R.id.RegLastame);
+        city = findViewById(R.id.RegCity);
+        depart = findViewById(R.id.RegDepart);
+        age = findViewById(R.id.RegAge);
+        male = findViewById(R.id.RegMale);
+        female = findViewById(R.id.RegFemale);
         student.setChecked(true);
-        StudentPick();
-        TeacherPick();
-        AlreadyHaveAccount();
-        RegisterClick();
+        male.setChecked(true);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
+        StudentPick();
+        TeacherPick();
+        MalePick();
+        FemalePick();
+        AlreadyHaveAccount();
+        RegisterClick();
+    }
+    public void MalePick(){
+        male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                female.setChecked(false);
+                sex = "Male";
+            }
+        });
     }
 
+    public void FemalePick(){
+        female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                male.setChecked(false);
+                sex = "Female";
+            }
+        });
+    }
     public void StudentPick(){
         student.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,11 +132,11 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(username.length()>5 && password.length()>5 && confirmpassword.length()>5 && email.length()>10 ) {
+                if(username.length()>5 && password.length()>5 && confirmpassword.length()>5 && email.length()>10 && firstname.length()>1 && lastname.length()>1 && city.length()>1 && depart.length()>1 && age.length()>1) {
                     if (password.getText().toString().equals(confirmpassword.getText().toString())) {
                         if (CheckExsists() == 0) {
                             try {
-                                db.insert(username.getText().toString(), email.getText().toString(), password.getText().toString(), type);
+                                db.insert(username.getText().toString(), email.getText().toString(), password.getText().toString(), type,age.getText().toString(),city.getText().toString(),sex,depart.getText().toString(),firstname.getText().toString(),lastname.getText().toString());
                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             }
                             catch (Exception e){
@@ -132,6 +161,16 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Password must have at least 6 leatters ", Toast.LENGTH_LONG).show();
                 else if(confirmpassword.length()<6)
                     Toast.makeText(RegisterActivity.this, "Confirm Password must have at least 6 leatters ", Toast.LENGTH_LONG).show();
+                else if(firstname.length()<2)
+                    Toast.makeText(RegisterActivity.this, "Firstname must have at least 2 leatters ", Toast.LENGTH_LONG).show();
+                else if(lastname.length()<2)
+                    Toast.makeText(RegisterActivity.this, "Lastname must have at least 2 leatters ", Toast.LENGTH_LONG).show();
+                else if(city.length()<2)
+                    Toast.makeText(RegisterActivity.this, "City must have at least 2 leatters ", Toast.LENGTH_LONG).show();
+                else if(depart.length()<2)
+                    Toast.makeText(RegisterActivity.this, "Depart must have at least 2 leatters ", Toast.LENGTH_LONG).show();
+                else if(age.length()<2)
+                    Toast.makeText(RegisterActivity.this, "Age must have at least 2 leatters ", Toast.LENGTH_LONG).show();
             }
         });
     }
