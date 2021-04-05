@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class TeacherActivity extends AppCompatActivity {
-    Button course, logout, request, changePassword;
+    Button tags, logout, request, changePassword,editinfo,personalinfo;
     TextView text;
     Intent intent;
     User user;
@@ -18,21 +18,45 @@ public class TeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
         init();
-        Logout();
-        Courses();
-        Request();
-        Changepassword();
     }
     public void init(){
-        course = findViewById(R.id.btnCourse1);
+        tags = findViewById(R.id.btnTags);
         logout = findViewById(R.id.btnLogout);
         text = findViewById(R.id.TeacherID);
         request = findViewById(R.id.btnRequest);
+        editinfo =findViewById(R.id.EdditInfo);
         changePassword = findViewById(R.id.changePassword);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
-        text.setText(user.getUsername());
+        text.setText(user.getFirstname() +" "+ user.getLastname());
         text.setEnabled(false);
+        personalinfo = findViewById(R.id.btnPersonalinfo);
+        Logout();
+        Tags();
+        Request();
+        Changepassword();
+        EditInfo();
+        PersonalInfo();
+    }
+    public void PersonalInfo(){
+        personalinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(TeacherActivity.this, PersonalinfoActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
+    }
+    public void EditInfo(){
+        editinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(TeacherActivity.this, EditInfoActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
     }
     public void Logout(){
         logout.setOnClickListener(new View.OnClickListener() {
@@ -62,11 +86,11 @@ public class TeacherActivity extends AppCompatActivity {
             }
         });
     }
-    public void Courses(){
-        course.setOnClickListener(new View.OnClickListener() {
+    public void Tags(){
+        tags.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(TeacherActivity.this, TeacherCoursesActivity.class);
+                intent = new Intent(TeacherActivity.this, TeacherTagsActivity.class);
                 intent.putExtra("user", user);
                 startActivity(intent);
             }
