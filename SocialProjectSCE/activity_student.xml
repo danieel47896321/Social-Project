@@ -12,10 +12,10 @@
         android:id="@+id/HeyText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:drawableRight="@drawable/ic_smile"
         android:drawablePadding="10px"
         android:paddingLeft="10px"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.11" />
 
     <Button
-        android:id="@+id/btnCourse1"
+        android:id="@+id/btnTags"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -44,7 +44,7 @@
         android:paddingTop="0dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        android:text="קורסים"
+        android:text="תגיות"
         android:textSize="18sp"
         android:textStyle="bold"
         app:backgroundTint="@android:color/holo_blue_dark"
@@ -86,9 +86,9 @@
         android:textStyle="bold"
         app:backgroundTint="@android:color/holo_blue_dark"
         app:iconPadding="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/btnCourse1"
-        app:layout_constraintStart_toStartOf="@+id/btnCourse1"
-        app:layout_constraintTop_toBottomOf="@+id/btnCourse1" />
+        app:layout_constraintEnd_toEndOf="@+id/btnTags"
+        app:layout_constraintStart_toStartOf="@+id/btnTags"
+        app:layout_constraintTop_toBottomOf="@+id/btnTags" />
 
     <EditText
         android:id="@+id/StudentID"
@@ -103,5 +103,46 @@
         app:layout_constraintEnd_toEndOf="@+id/HeyText"
         app:layout_constraintStart_toStartOf="@+id/HeyText"
         app:layout_constraintTop_toBottomOf="@+id/HeyText" />
+
+    <Button
+        android:id="@+id/btnEdditInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:drawableTop="@drawable/ic_settings"
+        android:paddingLeft="10dp"
+        android:paddingTop="0dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="עדכון פרטים אישיים"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:iconPadding="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/changePassword"
+        app:layout_constraintStart_toStartOf="@+id/changePassword"
+        app:layout_constraintTop_toBottomOf="@+id/changePassword" />
+
+    <Button
+        android:id="@+id/Personinfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:drawableTop="@drawable/ic_info"
+        android:paddingLeft="10dp"
+        android:paddingTop="0dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="מידע אישי"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:iconPadding="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/btnEdditInfo"
+        app:layout_constraintStart_toStartOf="@+id/btnEdditInfo"
+        app:layout_constraintTop_toBottomOf="@+id/btnEdditInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
