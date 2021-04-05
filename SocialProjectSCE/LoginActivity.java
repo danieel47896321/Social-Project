@@ -51,7 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
@@ -63,16 +65,22 @@ public class LoginActivity extends AppCompatActivity {
                     Boolean Flag = false;
                     try {
                         Cursor cursor = db.getData();
-                        if (cursor.moveToFirst()) {
-                            while (cursor.moveToNext()){
+                        if (cursor.moveToFirst())
+                            do{
                                 String user = cursor.getString(cursor.getColumnIndex("username"));
                                 String pass = cursor.getString(cursor.getColumnIndex("password"));
                                 String email = cursor.getString(cursor.getColumnIndex("email"));
                                 String type = cursor.getString(cursor.getColumnIndex("type"));
+                                String age = cursor.getString(cursor.getColumnIndex("age"));
+                                String city = cursor.getString(cursor.getColumnIndex("city"));
+                                String sex = cursor.getString(cursor.getColumnIndex("sex"));
+                                String depart = cursor.getString(cursor.getColumnIndex("depart"));
+                                String firstname = cursor.getString(cursor.getColumnIndex("firstname"));
+                                String lastname = cursor.getString(cursor.getColumnIndex("lastname"));
                                 if (username.getText().toString().equals(user) && password.getText().toString().equals(pass)) {
                                     cursor.close();
                                     Flag = true;
-                                    User USER = new User(user, email, pass, type);
+                                    User USER = new User(user, email, pass, type, age, city, sex, depart, firstname, lastname);
                                     if (type.equals("Admin"))
                                         intent = new Intent(LoginActivity.this, AdminActivity.class);
                                     else if (type.equals("Teacher"))
@@ -85,12 +93,12 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     break;
                                 }
-                            }
+                            }while(cursor.moveToNext());
                             if(!Flag) {
                                 cursor.close();
                                 db.close();
                             }
-                        }
+
                     }
                     catch (Exception e){
                         Toast.makeText(LoginActivity.this, "Failed", Toast.LENGTH_LONG).show();
