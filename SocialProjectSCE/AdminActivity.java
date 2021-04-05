@@ -9,29 +9,54 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class AdminActivity extends AppCompatActivity {
-    Button course, logout, request, changePassword;
-    TextView text;
-    Intent intent;
-    User user;
+    private Button tags, logout, request, changePassword,editinfo,personalinfo;
+    private TextView text;
+    private Intent intent;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         init();
-        Logout();
-        Courses();
-        Request();
-        Changepassword();
     }
     public void init(){
-        course = findViewById(R.id.btnCourse1);
+        tags = findViewById(R.id.btnTags);
         logout = findViewById(R.id.btnLogout);
         text = findViewById(R.id.HeyText);
         request = findViewById(R.id.btnRequest);
+        editinfo =findViewById(R.id.EdditInfo);
         changePassword = findViewById(R.id.changePassword);
+        personalinfo = findViewById(R.id.btnPersonalinfo);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
-        text.setText( "שלום אדמין: "+user.getUsername());
+        text.setText( (user.getFirstname() +" "+ user.getLastname()));
+        Logout();
+        Tags();
+        Request();
+        Changepassword();
+        EditInfo();
+        PersonalInfo();
+    }
+    public void PersonalInfo(){
+        personalinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(AdminActivity.this, PersonalinfoActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
+    }
+    public void EditInfo(){
+        editinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(AdminActivity.this, EditInfoActivity.class);
+                user=null;
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
     }
     public void Changepassword(){
         changePassword.setOnClickListener(new View.OnClickListener() {
@@ -62,11 +87,11 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
     }
-    public void Courses(){
-        course.setOnClickListener(new View.OnClickListener() {
+    public void Tags(){
+        tags.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(AdminActivity.this, AdminCoursesActivity.class);
+                intent = new Intent(AdminActivity.this, AdminTagsActivity.class);
                 intent.putExtra("user", user);
                 startActivity(intent);            }
         });
