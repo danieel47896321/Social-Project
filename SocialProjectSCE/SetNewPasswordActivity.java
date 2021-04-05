@@ -49,7 +49,7 @@ public class SetNewPasswordActivity extends AppCompatActivity {
                 if(password.length()>5 && confirmpassword.length()>5 ){
                     if(password.getText().toString().equals(confirmpassword.getText().toString())){
                             try {
-                                db.update(user.getUsername(), user.getEmail(), password.getText().toString(), user.getType());
+                                db.update(user.getUsername(), user.getEmail(), password.getText().toString(), user.getType(),user.getAge(),user.getCity(),user.getSex(),user.getDepart(),user.getFirstname(),user.getLastname());
                                 user.setPassword(password.getText().toString());
                                 intent = new Intent(SetNewPasswordActivity.this, LoginActivity.class);
                                 Toast.makeText(SetNewPasswordActivity.this, "Password Changed", Toast.LENGTH_LONG).show();
