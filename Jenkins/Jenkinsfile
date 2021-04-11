@@ -6,7 +6,7 @@ pipeline {
         stage('Build App') {
             steps {
                 // Run the app
-                sh './gradlew SocialProjectSCE'
+                sh 'gradlew SocialProjectSCE'
             }
         }
         stage('Tests') {
