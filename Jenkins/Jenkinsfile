@@ -3,11 +3,6 @@ pipeline {
         label 'android'
     }
     stages {
-        stage('Start Build') {
-            steps {
-                bitbucketStatusNotify(buildState: 'INPROGRESS')
-            }
-        }
         stage('Build App') {
             steps {
                 // Clean and assemble APKs
@@ -17,7 +12,7 @@ pipeline {
         stage('Tests') {
             steps {
                 // Clean and assemble APKs
-                sh './gradlew clean assembleDebug assembleRelease'
+                sh './gradlew test'
             }
         }
         stage('Finished') {
