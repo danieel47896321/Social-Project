@@ -6,7 +6,7 @@ pipeline {
         stage('Build App') {
             steps {
                 // Run the app
-                sh './gradlew clean assembleDebug assembleRelease'
+                sh './gradlew SocialProjectSCE'
                 archiveArtifacts '**/*.apk'
                 archiveArtifacts artifacts: 'app/build/outputs/apk/*.apk', fingerprint: true
             }
