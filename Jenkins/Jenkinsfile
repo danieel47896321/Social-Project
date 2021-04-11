@@ -13,6 +13,7 @@ pipeline {
             steps {
                 // run the tests
                // sh 'gradlew test'
+                echo 'Finished'
             }
         }
         stage('Finished') {
