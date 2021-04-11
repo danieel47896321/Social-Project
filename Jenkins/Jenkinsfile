@@ -6,6 +6,8 @@ pipeline {
         stage('Build App') {
             steps {
                 // Run the app
+                sdkPackage "build-tools;31.0.0"
+                sdkPackage "platforms;android-31"
                 sh './gradlew :app:assembleDebug'
                 sh './gradlew :app:assembleDebugAndroidTest'
                 sh './gradlew SocialProjectSCE'
