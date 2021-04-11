@@ -6,14 +6,15 @@ pipeline {
         stage('Build App') {
             steps {
                 // Run the app
-                sh 'gradlew SocialProjectSCE'
+                sh './gradlew :app:assembleDebug'
+                sh './gradlew :app:assembleDebugAndroidTest'
+                sh './gradlew SocialProjectSCE'
             }
         }
         stage('Tests') {
             steps {
                 // run the tests
-               // sh 'gradlew test'
-                echo 'Finished'
+                sh './gradlew test'
             }
         }
         stage('Finished') {
