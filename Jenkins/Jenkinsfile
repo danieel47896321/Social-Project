@@ -8,60 +8,16 @@ pipeline {
                 bitbucketStatusNotify(buildState: 'INPROGRESS')
             }
         }
-        stage('Setup Versions') {
-            steps {
-                script {
-                    VERSION_NAME = sh(
-                            script: './gradlew -q printVersionName',
-                            returnStdout: true
-                    ).trim().tokenize().last()
-
-                    VERSION_SUFFIX = sh(
-                            script: './gradlew -q printVersionSuffix',
-                            returnStdout: true
-                    ).trim().tokenize().last()
-
-                    APP_VERSION_NAME = VERSION_NAME + VERSION_SUFFIX
-
-                    VERSION_CODE = sh(
-                            script: './gradlew -q printVersionCode',
-                            returnStdout: true
-                    ).trim().tokenize().last()
-
-                    JIRA_PROJECT_KEY = sh(
-                            script: './gradlew -q printJiraProjectKey',
-                            returnStdout: true
-                    ).trim().tokenize().last()
-
-                    DROPBOX_FOLDER = "${PROJECT_NAME}/${VERSION_NAME}/${APP_VERSION_NAME}"
-
-                    PROGUARD_ENABLED = sh(
-                            script: './gradlew -q printProguardEnabled',
-                            returnStdout: true
-                    ).trim().tokenize().last()
-                }
-            }
-        }
         stage('Build App') {
             steps {
                 // Clean and assemble APKs
                 sh './gradlew clean assembleDebug assembleRelease'
-                script {
-                    if (env.BRANCH_NAME.startsWith("release")) {
-                        sh './gradlew bundleUpload'
-                    }
-                }
             }
         }
         stage('Tests') {
             steps {
                 // Clean and assemble APKs
                 sh './gradlew clean assembleDebug assembleRelease'
-                script {
-                    if (env.BRANCH_NAME.startsWith("release")) {
-                        sh './gradlew bundleUpload'
-                    }
-                }
             }
         }
         stage('Finished') {
