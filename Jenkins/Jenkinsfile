@@ -5,18 +5,19 @@ pipeline {
     stages {
         stage('Build App') {
             steps {
-                // Clean and assemble APKs
+                // Run the app
                 sh './gradlew clean assembleDebug assembleRelease'
             }
         }
         stage('Tests') {
             steps {
-                // Clean and assemble APKs
+                // run the tests
                 sh './gradlew test'
             }
         }
         stage('Finished') {
             steps {
+                //print finished
                 echo 'Finished'
             }
         }
