@@ -10,7 +10,6 @@ import com.google.firebase.database.ValueEventListener;
 import org.junit.Test;
 
 public class IntegrationMsgPost {
-    public class IntegrationLoginMainScreen {
         private FirebaseDatabase database = FirebaseDatabase.getInstance();
         private DatabaseReference reference = database.getReference().child("Tags");
         @Test
@@ -34,5 +33,4 @@ public class IntegrationMsgPost {
             });
             return tag1 == tag2;
         }
-    }
 }
