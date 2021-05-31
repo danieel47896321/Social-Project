@@ -1,23 +1,18 @@
 pipeline {
-    agent {
-        label 'android'
-    }
+    agent any
     stages {
-        stage('Build App') {
+        stage('Building App') {
             steps {
-                // Run the app
-                 echo 'Building the App'
+                echo 'Building..'
             }
         }
-        stage('Tests') {
+        stage('Test') {
             steps {
-                // run the tests
-                echo 'Runing Tests'
+                echo 'Testing..'
             }
         }
         stage('Finished') {
             steps {
-                //note when finished
                 echo 'Finished building and testing'
             }
         }
