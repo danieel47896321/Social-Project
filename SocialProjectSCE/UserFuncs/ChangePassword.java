@@ -2,6 +2,7 @@ package com.example.socialprojectsce.UserFuncs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class ChangePassword extends AppCompatActivity {
     private EditText currentPassword, newPassword, confirmnewPassword;
     private Button buttonSaveChanges, buttonCancel;
     private Intent intent;
+    private View screenView;
     private User user;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -38,6 +40,7 @@ public class ChangePassword extends AppCompatActivity {
         SaveChanges();
     }
     public void setID(){
+        screenView = findViewById(R.id.rView);
         currentPassword = findViewById(R.id.currentPassword);
         newPassword = findViewById(R.id.newPassword);
         confirmnewPassword = findViewById(R.id.confirmnewPassword);
@@ -45,6 +48,14 @@ public class ChangePassword extends AppCompatActivity {
         buttonCancel = findViewById(R.id.buttonCancel);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
+        if(user.getBackground().equals("background"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background));
+        else if(user.getBackground().equals("background1"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background1));
+        else if(user.getBackground().equals("background2"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background2));
+        else if(user.getBackground().equals("background3"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background3));
     }
     public void SaveChanges(){
         buttonSaveChanges.setOnClickListener(new View.OnClickListener() {
