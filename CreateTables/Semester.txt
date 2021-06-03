@@ -1,0 +1,8 @@
+FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference().child("Semester");
+        Tags user1 = new Tags("Semester A","Semester",R.drawable.ic_baseline_school_24);
+        Tags user2 = new Tags("Semester B","Semester",R.drawable.ic_baseline_school_24);
+        Tags user3 = new Tags("Summer Semester","Semester",R.drawable.ic_baseline_school_24);
+        reference.child("1").setValue(user1);
+        reference.child("2").setValue(user2);
+        reference.child("3").setValue(user3);
