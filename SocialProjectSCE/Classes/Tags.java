@@ -11,11 +11,11 @@ public class Tags {
         this.Photo = photo;
     }
 
-    public int getThumbnail() { return Photo; }
+    public int getPhoto() { return Photo; }
     public String getText() { return Tagname; }
     public String getCategory() { return Category; }
-    public void setText(String tagname) {  this.Tagname = tagname; }
+    public void setTagname(String tagname) {  this.Tagname = tagname; }
     public void setCategory(String category) {  this.Category = category; }
-    public void setThumbnail(int photo) {  this.Photo = photo; }
+    public void setPhoto(int photo) {  this.Photo = photo; }
 
 }
