@@ -1,6 +1,7 @@
 package com.example.socialprojectsce.TagsFuncs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class Contact extends AppCompatActivity {
     private Intent intent;
     private String email="Social-Project@gmail.com";
     private User user;
+    private View screenView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +31,19 @@ public class Contact extends AppCompatActivity {
         Back();
     }
     void setID(){
+        screenView = findViewById(R.id.rView);
         sendMail = findViewById(R.id.sendMail);
         buttonBack = findViewById(R.id.buttonBack);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
+        if(user.getBackground().equals("background"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background));
+        else if(user.getBackground().equals("background1"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background1));
+        else if(user.getBackground().equals("background2"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background2));
+        else if(user.getBackground().equals("background3"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background3));
     }
     public void sendmail(){
         sendMail.setOnClickListener(new View.OnClickListener() {
