@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.socialprojectsce.GuestFuncs.Login;
+import com.example.socialprojectsce.OpeningScreen;
 import com.example.socialprojectsce.R;
 import com.example.socialprojectsce.TagsFuncs.About;
 import com.example.socialprojectsce.TagsFuncs.Engineering;
@@ -23,7 +25,6 @@ import com.example.socialprojectsce.TagsFuncs.TagsPage;
 import com.example.socialprojectsce.TagsFuncs.Updates;
 import com.example.socialprojectsce.TagsFuncs.Studies;
 import com.example.socialprojectsce.TagsFuncs.Contact;
-import com.example.socialprojectsce.UserFuncs.MainScreen;
 
 import java.util.List;
 
@@ -31,21 +32,19 @@ public class TagsView extends RecyclerView.Adapter<TagsView.MyViewHolder> {
     private Context context;
     private List<Tags> tags;
     private User user;
-    private String Eng[] = {"הנדסת תוכנה","הנדסת חשמל","הנדסת תעשייה וניהול","הנדסת בנין","הנדסת מכונות","הנדסת כימיה","הנדסת תקשורת"};
-    private String Years[] = {"מכינה","שנה א","שנה ב","שנה ג","שנה ד"};
-    private String Sem[] = {"סמסטר קיץ","סמסטר א","סמסטר ב"};
+    private String Eng[] = {"Software engineering","Electrical Engineering","Industrial Engineering and Management","Building Engineering","Mechanical Engineering","Chemical Engineering"};
+    private String Years[] = {"Year 1","Year 2","Year 3","Year 4"};
+    private String Sem[] = {"Semester A","Semester B","Summer Semester"};
     private String Hobbies[] = {"Games","Sport","Music","Fun","Other"};
+
     public TagsView(Context context, List<Tags> tags) {
         this.context = context;
         this.tags = tags;
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        public Tags textViewMsg;
         TextView textView;
         ImageView imageView;
         CardView cardView;
-        String cur;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.tagText);
@@ -62,7 +61,7 @@ public class TagsView extends RecyclerView.Adapter<TagsView.MyViewHolder> {
     }
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.textView.setText(tags.get(position).getText());
-        holder.imageView.setImageResource(tags.get(position).getThumbnail());
+        holder.imageView.setImageResource(tags.get(position).getPhoto());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
