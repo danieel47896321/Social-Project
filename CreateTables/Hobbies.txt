@@ -1,0 +1,12 @@
+FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference().child("Hobbies");
+        Tags user1 = new Tags("Games","Hobbies",R.drawable.ic_baseline_sports_esports_24);
+        Tags user2 = new Tags("Sport","Hobbies",R.drawable.ic_baseline_sports_soccer_24);
+        Tags user3 = new Tags("Music","Hobbies",R.drawable.ic_baseline_music_video_24);
+        Tags user4 = new Tags("Fun","Hobbies",R.drawable.ic_fun);
+        Tags user5 = new Tags("Other","Hobbies",R.drawable.ic_baseline_groups_24);
+        reference.child("1").setValue(user1);
+        reference.child("2").setValue(user2);
+        reference.child("3").setValue(user3);
+        reference.child("4").setValue(user4);
+        reference.child("5").setValue(user5);
