@@ -1,0 +1,10 @@
+ FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference().child("Year");
+        Tags user1 = new Tags("Year 1","Year",R.drawable.ic_baseline_school_24);
+        Tags user2 = new Tags("Year 2","Year",R.drawable.ic_baseline_school_24);
+        Tags user3 = new Tags("Year 3","Year",R.drawable.ic_baseline_school_24);
+        Tags user4 = new Tags("Year 4","Year",R.drawable.ic_baseline_school_24);
+        reference.child("1").setValue(user1);
+        reference.child("2").setValue(user2);
+        reference.child("3").setValue(user3);
+        reference.child("4").setValue(user4);
