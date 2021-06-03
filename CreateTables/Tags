@@ -1,0 +1,12 @@
+FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference().child("Tags");
+        Tags user1 = new Tags("Studies","Tags",R.drawable.ic_baseline_menu_book_24);
+        Tags user2 = new Tags("Hobbies","Tags",R.drawable.ic_game);
+        Tags user3 = new Tags("Updates","Tags",R.drawable.ic_note);
+        Tags user4 = new Tags("Contact","Tags",R.drawable.ic_phone_msg);
+        Tags user5 = new Tags("About","Tags",R.drawable.ic_baseline_info);
+        reference.child("1").setValue(user1);
+        reference.child("2").setValue(user2);
+        reference.child("3").setValue(user3);
+        reference.child("4").setValue(user4);
+        reference.child("5").setValue(user5);
