@@ -1,6 +1,7 @@
 package com.example.socialprojectsce.UserFuncs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ public class Personalinfo extends AppCompatActivity {
     private TextView  UserEmail, UserType,UserPhone;
     private Intent intent;
     private User user;
+    private View screenView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,19 +31,30 @@ public class Personalinfo extends AppCompatActivity {
         btnBack();
     }
     public void setID(){
+        screenView = findViewById(R.id.rView);
         UserEmail = findViewById(R.id.UserEmail);
         UserType = findViewById(R.id.UserType);
         UserPhone = findViewById(R.id.UserPhone);
         Back = findViewById(R.id.Back);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
+        if(user.getBackground().equals("background"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background));
+        else if(user.getBackground().equals("background1"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background1));
+        else if(user.getBackground().equals("background2"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background2));
+        else if(user.getBackground().equals("background3"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background3));
     }
     public void SetTextInfo(){
         if(user.getType().equals("Admin"))
             UserType.setText("Type of User:  Admin");
         else if(user.getType().equals("Teacher")) {
-            if(user.getFlag().equals("true"))
+            if(user.getFlag().equals("agree"))
                 UserType.setText("Type of User:  Teacher (with Permission)");
+            else if(user.getFlag().equals("true"))
+                UserType.setText("Type of User:  Teacher (waiting for Permission)");
             else
                 UserType.setText("Type of User:  Teacher (with out Permission)");
         }
