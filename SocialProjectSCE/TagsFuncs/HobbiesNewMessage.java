@@ -1,6 +1,7 @@
 package com.example.socialprojectsce.TagsFuncs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -28,8 +29,9 @@ public class HobbiesNewMessage extends AppCompatActivity {
     private TextView FullMsg;
     private RecyclerView viewList;
     private Intent intent;
+    private View screenView;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference reference = database.getReference().child("Music");
+    private DatabaseReference reference ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +40,22 @@ public class HobbiesNewMessage extends AppCompatActivity {
     }
     public void init(){
         MsgTitle = findViewById(R.id.MsgTitle);
+        screenView = findViewById(R.id.rView);
         FullMsg = findViewById(R.id.FullMsg);
         buttonOk = findViewById(R.id.buttonOK);
         buttonCancel = findViewById(R.id.buttonCancel);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
+        if(user.getBackground().equals("background"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background));
+        else if(user.getBackground().equals("background1"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background1));
+        else if(user.getBackground().equals("background2"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background2));
+        else if(user.getBackground().equals("background3"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background3));
         category = (String)intent.getSerializableExtra("category");
+        reference = database.getReference().child(category);
         OK();
         Cancel();
     }
@@ -53,8 +65,9 @@ public class HobbiesNewMessage extends AppCompatActivity {
             public void onClick(View v) {
                 if(FullMsg.length()>0) {
                     Date date = new Date();
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                    Msg msg = new Msg(MsgTitle.getText().toString(),user.getFirstname() + " " + user.getLastname(),formatter.format(date),category, FullMsg.getText().toString());
+                    SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+                    Msg msg = new Msg(MsgTitle.getText().toString(), user.getFirstname() + " " + user.getLastname(), formatter.format(date), category, FullMsg.getText().toString());
+                    msg.setPhoto(user.getPhoto());
                     reference.child(FullMsg.getText().toString()).setValue(msg);
                     intent = new Intent(HobbiesNewMessage.this, GenericHobbies.class);
                     intent.putExtra("user", user);
