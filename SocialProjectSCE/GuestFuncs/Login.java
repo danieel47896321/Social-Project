@@ -96,6 +96,7 @@ public class Login extends AppCompatActivity {
                                             user.setPhone(datas.child("phone").getValue().toString());
                                             user.setSex(datas.child("sex").getValue().toString());
                                             user.setType(datas.child("type").getValue().toString());
+                                            user.setBackground(datas.child("background").getValue().toString());
                                         }
                                         intent = new Intent(Login.this, MainScreen.class);
                                         intent.putExtra("user", user);
