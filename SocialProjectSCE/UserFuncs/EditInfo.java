@@ -1,6 +1,7 @@
 package com.example.socialprojectsce.UserFuncs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ public class EditInfo extends AppCompatActivity {
     private Button Cancel, Confirm;
     private CheckBox MaleBox, FemaleBox;
     private Intent intent;
+    private View screenView;
     private User user;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference().child("Users");
@@ -39,6 +41,7 @@ public class EditInfo extends AppCompatActivity {
         Cancel();
     }
     public void setID(){
+        screenView = findViewById(R.id.rView);
         FirstName = findViewById(R.id.FirstName);
         LastName = findViewById(R.id.LastName);
         City = findViewById(R.id.City);
@@ -50,6 +53,14 @@ public class EditInfo extends AppCompatActivity {
         FemaleBox = findViewById(R.id.FemaleBox);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
+        if(user.getBackground().equals("background"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background));
+        else if(user.getBackground().equals("background1"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background1));
+        else if(user.getBackground().equals("background2"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background2));
+        else if(user.getBackground().equals("background3"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background3));
         if(user.getSex().toString().equals("Male"))
             MaleBox.setChecked(true);
         else
