@@ -1,6 +1,7 @@
 package com.example.socialprojectsce.TagsFuncs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,8 +34,9 @@ public class Hobbies extends AppCompatActivity {
     private RecyclerView viewList;
     private Intent intent;
     private List<Tags> tags;
+    private View screenView;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference reference = database.getReference().child("Tags");
+    private DatabaseReference reference = database.getReference().child("Hobbies");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +45,20 @@ public class Hobbies extends AppCompatActivity {
     }
     public void init(){
         tags = new ArrayList<>();
+        screenView = findViewById(R.id.rView);
         btnBack = findViewById(R.id.Back);
         viewList = findViewById(R.id.StudiesRV);
         TagText = findViewById(R.id.TagText1);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
+        if(user.getBackground().equals("background"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background));
+        else if(user.getBackground().equals("background1"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background1));
+        else if(user.getBackground().equals("background2"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background2));
+        else if(user.getBackground().equals("background3"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background3));
         SetTags();
         Back();
     }
@@ -56,7 +67,7 @@ public class Hobbies extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    String tagname = datas.child("tagname").getValue().toString();
+                    String tagname = datas.child("text").getValue().toString();
                     String category = datas.child("category").getValue().toString();
                     int photo = Integer.valueOf(datas.child("photo").getValue().toString());
                     tags.add(new Tags(tagname, category, photo));
