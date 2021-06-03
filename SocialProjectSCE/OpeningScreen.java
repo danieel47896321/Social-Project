@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.socialprojectsce.Classes.Tags;
+import com.example.socialprojectsce.Classes.User;
 import com.example.socialprojectsce.GuestFuncs.Login;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -15,14 +16,16 @@ import com.google.firebase.database.FirebaseDatabase;
 public class OpeningScreen extends AppCompatActivity {
     private LinearLayout gotoLoginPage;
     private Intent intent;
+    private View screenView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
         init();
-
     }
     public void init() {
+
         gotoLoginPage = findViewById(R.id.gotoLoginPage);
         Login();
     }
