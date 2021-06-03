@@ -1,6 +1,7 @@
 package com.example.socialprojectsce.TagsFuncs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,7 @@ public class TagsPage extends AppCompatActivity {
     private RecyclerView viewList;
     private Intent intent;
     private List<Tags> tags;
+    private View screenView;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference().child("Tags");
     @Override
@@ -46,17 +48,26 @@ public class TagsPage extends AppCompatActivity {
     }
     public void setID(){
         tags = new ArrayList<>();
+        screenView = findViewById(R.id.rView);
         Back = findViewById(R.id.Back);
         viewList = findViewById(R.id.StudentRV);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
+        if(user.getBackground().equals("background"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background));
+        else if(user.getBackground().equals("background1"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background1));
+        else if(user.getBackground().equals("background2"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background2));
+        else if(user.getBackground().equals("background3"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background3));
     }
     public void SetTags(){
-        reference.orderByChild("category").equalTo("tags").addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.orderByChild("category").equalTo("Tags").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    String tagname = datas.child("tagname").getValue().toString();
+                    String tagname = datas.child("text").getValue().toString();
                     String category = datas.child("category").getValue().toString();
                     int photo = Integer.valueOf(datas.child("photo").getValue().toString());
                     tags.add(new Tags(tagname, category, photo));
