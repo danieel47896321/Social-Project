@@ -1,0 +1,15 @@
+ FirebaseDatabase database = FirebaseDatabase.getInstance();
+DatabaseReference reference = database.getReference().child("Studies");
+
+        Tags user1 = new Tags("Software engineering","Studies",R.drawable.ic_baseline_school_24);
+        Tags user2 = new Tags("Electrical Engineering","Studies",R.drawable.ic_baseline_school_24);
+        Tags user3 = new Tags("Industrial Engineering and Management","Studies",R.drawable.ic_baseline_school_24);
+        Tags user4 = new Tags("Building Engineering","Studies",R.drawable.ic_baseline_school_24);
+        Tags user5 = new Tags("Mechanical Engineering","Studies",R.drawable.ic_baseline_school_24);
+        Tags user6 = new Tags("Chemical Engineering","Studies",R.drawable.ic_baseline_school_24);
+        reference.child("1").setValue(user1);
+        reference.child("2").setValue(user2);
+        reference.child("3").setValue(user3);
+        reference.child("4").setValue(user4);
+        reference.child("5").setValue(user5);
+        reference.child("6").setValue(user6);
