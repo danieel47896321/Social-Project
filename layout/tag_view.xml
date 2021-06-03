@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="180dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:id="@+id/tagview_id"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="6dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/tagImage"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:background="@android:color/holo_blue_dark">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tagText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="לימודים"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            >
+
+        </TextView>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
