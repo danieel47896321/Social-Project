@@ -1,6 +1,7 @@
 package com.example.socialprojectsce.TagsFuncs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,10 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.socialprojectsce.Classes.Msg;
 import com.example.socialprojectsce.Classes.MsgView;
 import com.example.socialprojectsce.Classes.User;
+import com.example.socialprojectsce.GuestFuncs.Login;
 import com.example.socialprojectsce.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +33,7 @@ public class GenericHobbies extends AppCompatActivity {
     private RecyclerView viewList;
     private Intent intent;
     private List<Msg> msgs;
+    private View screenView;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference ;
     @Override
@@ -40,12 +44,21 @@ public class GenericHobbies extends AppCompatActivity {
     }
     public void init(){
         msgs = new ArrayList<>();
+        screenView = findViewById(R.id.rView);
         btnBack = findViewById(R.id.Back);
         viewList = findViewById(R.id.StudiesRV);
         TagText = findViewById(R.id.TagText1);
         buttonOpenMsg = findViewById(R.id.buttonOpenMsg);
         intent = getIntent();
         user = (User)intent.getSerializableExtra("user");
+        if(user.getBackground().equals("background"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background));
+        else if(user.getBackground().equals("background1"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background1));
+        else if(user.getBackground().equals("background2"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background2));
+        else if(user.getBackground().equals("background3"))
+            screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background3));
         TagText.setText((String)intent.getSerializableExtra("title"));
         reference = database.getReference().child((String)intent.getSerializableExtra("title"));
         OpenNewMsg();
@@ -56,7 +69,7 @@ public class GenericHobbies extends AppCompatActivity {
         buttonOpenMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(GenericHobbies.this, HobbiesNewMessage.class);
+                intent = new Intent(GenericHobbies.this, StudiesNewMessage.class);
                 intent.putExtra("user", user);
                 intent.putExtra("category", TagText.getText().toString());
                 startActivity(intent);
@@ -89,7 +102,7 @@ public class GenericHobbies extends AppCompatActivity {
     public void ShowTags(List<Msg> msgList){
         MsgView myMsgs = new MsgView(this,msgList);
         myMsgs.setUser(user);
-        viewList.setLayoutManager(new GridLayoutManager(this,3));
+        viewList.setLayoutManager(new GridLayoutManager(this,1));
         viewList.setAdapter(myMsgs);
     }
     public void Back(){
