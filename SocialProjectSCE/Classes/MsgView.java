@@ -61,6 +61,11 @@ public class MsgView extends RecyclerView.Adapter<MsgView.MyViewHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent(context, GenericMsgs.class);
                 intent.putExtra("user",user);
+                intent.putExtra("title",msgs.get(position).getMsgname());
+                intent.putExtra("msg",msgs.get(position).getText());
+                intent.putExtra("name",msgs.get(position).getPublish());
+                intent.putExtra("date",msgs.get(position).getDate());
+                intent.putExtra("category",msgs.get(position).getCategory());
                 context.startActivity(intent);
             }
         });

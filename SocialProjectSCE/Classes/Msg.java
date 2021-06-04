@@ -8,7 +8,7 @@ public class Msg {
     private String Publish;
     private String Date;
     private String Category;
-    private String Text;
+    private String Text,type;
     private int Photo;
     public Msg() { }
     public Msg(String Msgname, String Publish,String Date,String Category,String Text) {
@@ -17,6 +17,12 @@ public class Msg {
         this.Date = Date;
         this.Category = Category;
         this.Text = Text;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+    public String getType() {
+        return type;
     }
     public int getPhoto() { return Photo; }
     public void setPhoto(int photo) { Photo = photo; }
