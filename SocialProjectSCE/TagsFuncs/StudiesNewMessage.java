@@ -67,7 +67,7 @@ public class StudiesNewMessage extends AppCompatActivity {
                         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
                         Msg msg = new Msg(MsgTitle.getText().toString(), user.getFirstname() + " " + user.getLastname(), formatter.format(date), category, FullMsg.getText().toString());
                         msg.setPhoto(user.getPhoto());
-                        reference.child(user.getYear()).child(user.getSemester()).child(msg.getText()).setValue(msg);
+                        reference.child(user.getYear()).child(user.getSemester()).child(MsgTitle.getText().toString()).child("0").setValue(msg);
                         intent = new Intent(StudiesNewMessage.this, GenericStudies.class);
                         intent.putExtra("user", user);
                         intent.putExtra("title", category);

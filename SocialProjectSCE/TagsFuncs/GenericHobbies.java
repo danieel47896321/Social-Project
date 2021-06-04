@@ -69,7 +69,7 @@ public class GenericHobbies extends AppCompatActivity {
         buttonOpenMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(GenericHobbies.this, StudiesNewMessage.class);
+                intent = new Intent(GenericHobbies.this, HobbiesNewMessage.class);
                 intent.putExtra("user", user);
                 intent.putExtra("category", TagText.getText().toString());
                 startActivity(intent);
@@ -78,15 +78,15 @@ public class GenericHobbies extends AppCompatActivity {
         });
     }
     public void SetTags(){
-        reference.orderByChild("category").equalTo(TagText.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    String Msgname = datas.child("msgname").getValue().toString();
-                    String Publish = datas.child("publish").getValue().toString();
-                    String Category = datas.child("category").getValue().toString();
-                    String Date = datas.child("date").getValue().toString();
-                    String Text = datas.child("text").getValue().toString();
+                    String Msgname = datas.child("0").child("msgname").getValue().toString();
+                    String Publish = datas.child("0").child("publish").getValue().toString();
+                    String Category = datas.child("0").child("category").getValue().toString();
+                    String Date = datas.child("0").child("date").getValue().toString();
+                    String Text = datas.child("0").child("text").getValue().toString();
                     Msg msg = new Msg(Msgname, Publish,Date, Category,Text);
                     AddMsg(msg);
                 }

@@ -34,7 +34,8 @@ public class GenericStudies extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference ;
     private View screenView;
-
+    private int count=0;
+    private String temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class GenericStudies extends AppCompatActivity {
             screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background2));
         else if(user.getBackground().equals("background3"))
             screenView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.background3));
-        String temp = (String)intent.getSerializableExtra("title");
+        temp = (String)intent.getSerializableExtra("title");
         if(user.getSemester()!=null) {
             TagText.setText(user.getStudy() + "\n" + user.getYear() + "\n" + user.getSemester());
         }
@@ -67,7 +68,6 @@ public class GenericStudies extends AppCompatActivity {
             TagText.setText(user.getStudy() + "\n" + user.getYear() + "\n" + user.getSemester());
         }
         reference = database.getReference().child(user.getStudy()).child(user.getYear()).child(user.getSemester());
-
         OpenNewMsg();
         SetTags();
         Back();
@@ -85,15 +85,15 @@ public class GenericStudies extends AppCompatActivity {
         });
     }
     public void SetTags(){
-        reference.orderByChild("category").equalTo(TagText.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot datas: dataSnapshot.getChildren()){
-                    String Msgname = datas.child("msgname").getValue().toString();
-                    String Publish = datas.child("publish").getValue().toString();
-                    String Category = datas.child("category").getValue().toString();
-                    String Date = datas.child("date").getValue().toString();
-                    String Text = datas.child("text").getValue().toString();
+                    String Msgname = datas.child("0").child("msgname").getValue().toString();
+                    String Publish = datas.child("0").child("publish").getValue().toString();
+                    String Category = datas.child("0").child("category").getValue().toString();
+                    String Date = datas.child("0").child("date").getValue().toString();
+                    String Text = datas.child("0").child("text").getValue().toString();
                     Msg msg = new Msg(Msgname, Publish,Date, Category,Text);
                     AddMsg(msg);
                 }

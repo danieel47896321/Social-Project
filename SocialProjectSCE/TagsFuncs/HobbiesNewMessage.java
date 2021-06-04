@@ -68,7 +68,7 @@ public class HobbiesNewMessage extends AppCompatActivity {
                     SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
                     Msg msg = new Msg(MsgTitle.getText().toString(), user.getFirstname() + " " + user.getLastname(), formatter.format(date), category, FullMsg.getText().toString());
                     msg.setPhoto(user.getPhoto());
-                    reference.child(FullMsg.getText().toString()).setValue(msg);
+                    reference.child(MsgTitle.getText().toString()).child("0").setValue(msg);
                     intent = new Intent(HobbiesNewMessage.this, GenericHobbies.class);
                     intent.putExtra("user", user);
                     intent.putExtra("title", category);
